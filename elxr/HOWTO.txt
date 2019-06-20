@@ -1,0 +1,5 @@
+do 'mix compile' to compile all apps under the umbrella
+Commands like mix compile and mix test when executed in 
+the umbrella project root will automatically run for 
+each application in the apps/ directory.
+
