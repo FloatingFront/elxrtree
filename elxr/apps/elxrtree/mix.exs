@@ -11,6 +11,7 @@ defmodule Elxrtree.MixProject do
       lockfile: "../../mix.lock",
       elixir: "~> 1.8",
       start_permanent: Mix.env() == :prod,
+      escript: [main_module: Elxrtree.CLI],
       deps: deps()
     ]
   end
