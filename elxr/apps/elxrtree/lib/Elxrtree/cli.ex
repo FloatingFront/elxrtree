@@ -16,10 +16,45 @@ defmodule Elxrtree.CLI do
     :world
   end
 
-#  def f(arg), do: IO.inspect arg
+  def do_fareport(fajsonstructure)  do
+     level = 0
+     preamble = "*"
+     count = 0
 
-#  System.argv()
-#  |> Enum.inspect(&Elxrtree.CLI.f/1)
+     IO.puts "fajsonstructure:"
+     IO.inspect fajsonstructure
+
+     decodedfajsonstructure = Poison.decode(fajsonstructure)
+
+     IO.puts "decodedfajsonstructure:"
+     IO.inspect decodedfajsonstructure
+
+
+#     [jsonbit|jsonbits]= fajsonstructure
+
+     IO.puts "jsonbit:"
+#     IO.inspect jsonbit
+     IO.puts "jsonbits:"
+#     IO.inspect jsonbits
+
+#     fareport(preamble, jsonbit, jsonbits, level, count)
+  end
+
+  def fareport(preamble, jsonbit, jsonbits, level, count) do
+    IO.puts jsonbit
+    [jsonbit|jsonbits]= jsonbits
+    fareport(preamble,jsonbit, jsonbits, level, count)
+  end
+
+  def fareport_file() do
+
+  end
+
+  def fareport_directory() do
+
+  end
+
+#  def fachk(arg), do: IO.inspect arg
 
   def main(args) do
 
@@ -52,6 +87,8 @@ defmodule Elxrtree.CLI do
 
     IO.puts "filecontent(2):"
     IO.puts filecontent
+
+    do_fareport(filecontent)
 
 #    case flag do
 #      {}
