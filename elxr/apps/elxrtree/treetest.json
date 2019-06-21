@@ -1,0 +1,21 @@
+[
+  {"type":"directory","name":".","contents":[
+    {"type":"file","name":"README.md"},
+    {"type":"directory","name":"config","contents":[
+      {"type":"file","name":"config.exs"}
+    ]},
+    {"type":"file","name":"elxrtree"},
+    {"type":"directory","name":"lib","contents":[
+      {"type":"directory","name":"Elxrtree","contents":[
+        {"type":"file","name":"cli.ex"}
+      ]}
+    ]},
+    {"type":"file","name":"mix.exs"},
+    {"type":"directory","name":"test","contents":[
+      {"type":"file","name":"elxrtree_test.exs"},
+      {"type":"file","name":"test_helper.exs"}
+    ]},
+    {"type":"file","name":"treetest.json"}
+  ]},
+  {"type":"report","directories":4,"files":8}
+]
