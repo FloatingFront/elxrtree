@@ -25,13 +25,8 @@ defmodule Elxrtree.CLI do
      IO.inspect fajsonstructure
 
      decodedfajsonstructure = Poison.decode(fajsonstructure)
-#     IO.puts "decodedfajsonstructure:"
-#      |> IO.inspect decodedfajsonstructure
       |> IO.inspect
       |> handle_struct
-
-#     fareport(preamble, jsonbit, jsonbits, level, count)
-
   end
 
   def handle_struct({:ok, content }) do
@@ -45,12 +40,10 @@ defmodule Elxrtree.CLI do
   end
 
   def handle_struct({_,_}) do
-#    IO.inspect
     IO.puts "Something went wrong:handle_struct 2"
   end
 
   def handle_treestruct(treestruct) do
-
      IO.puts "handle_treestruct"
      IO.puts "treestruct"
      IO.inspect treestruct
@@ -89,18 +82,18 @@ defmodule Elxrtree.CLI do
   end
 
   def fareport_file() do
-
   end
 
   def fareport_directory() do
-
   end
-
-#  def fachk(arg), do: IO.inspect arg
 
   def main(args) do
 
-    {opts,_,_} = OptionParser.parse_head(args,switches: [file: :string, group: :string], aliases: [f: :file, g: :group])
+    {opts,_,_} = OptionParser.parse_head(
+                     args,
+                     switches: [file: :string, group: :string], 
+                     aliases: [f: :file, g: :group]
+                    )
 
     IO.puts "opts:"
     IO.inspect opts
@@ -131,13 +124,7 @@ defmodule Elxrtree.CLI do
     IO.puts filecontent
 
     do_fareport(filecontent)
-
-#    case flag do
-#      {}
-#    end
   end 
-   
-   
 
 end
 
