@@ -22,19 +22,19 @@ defmodule Elxrtree.CLI do
      count = 0
 
      IO.puts "fajsonstructure:"
-     IO.inspect fajsonstructure
+#     IO.inspect fajsonstructure
 
      decodedfajsonstructure = Poison.decode(fajsonstructure)
-      |> IO.inspect
+#      |> IO.inspect
       |> handle_struct
   end
 
   def handle_struct({:ok, content }) do
-     IO.puts "handle_treestuct 1"
+     IO.puts "handle_struct"
      [treestruct | summary ] = content
      [summarystruct | rest]  = summary
-     IO.inspect summarystruct
-     IO.inspect treestruct
+#     IO.inspect summarystruct
+#     IO.inspect treestruct
      
      handle_treestruct(treestruct) 
   end
@@ -45,34 +45,60 @@ defmodule Elxrtree.CLI do
 
   def handle_treestruct(treestruct) do
      IO.puts "handle_treestruct"
-     IO.puts "treestruct"
-     IO.inspect treestruct
+#     IO.puts "treestruct-1"
+#     IO.inspect treestruct
      IO.puts "name"
      IO.inspect treestruct["name"]
      IO.puts "type"
      IO.inspect treestruct["type"]
      IO.puts "contents"
      IO.inspect treestruct["contents"]
-     IO.puts "treestruct"
-     IO.inspect treestruct
-     handle_content(treestruct["contents"],0)
+#     IO.puts "treestruct-2"
+#     IO.inspect treestruct
+     handle_content(treestruct["contents"],0,0)
   end
 
-  def handle_content(content,index) do
+  def handle_content(nil,[],count) do
+     
+  end
+  
+  def handle_content(content,level,count) do
       IO.puts "handle_content"     
-      IO.inspect content
-      IO.puts "index"
-      IO.inspect index
-      IO.puts "content_type"
-      [first | content_type_rest] = content
-      content_type_1 = get_in(first, ["type"] )
-      IO.inspect content_type_1
+      count = count + 1
+      IO.puts "count: #{count}"
+      IO.puts "level: #{inspect(level)}"
+
+#      IO.inspect content
+      [content_first | content_rest] = content
+      content_type = get_in(content_first, ["type"] )
+      IO.puts ":content_type     :  #{inspect(content_type)}"
+      IO.puts ":content_first    :  #{inspect(content_first)}"
+      IO.puts ":content_rest     :  #{inspect(content_rest)}"
       IO.puts "case content type"
-      case content_type_1 do
-         "directory"  -> IO.inspect content[:type]
-         "file"       -> IO.inspect get_in(first, ["name"])
+      case content_type do
+#         "directory"   -> IO.inspect content[:type]
+         "directory"    -> handle_directory(content_first, content_rest, level, count) #  IO.inspect get_in(content_first, ["name"])
+#         "file"        -> IO.inspect get_in(content_first, ["name"])
+         "file"         -> handle_file(content_first, content_rest, level, count) #  IO.inspect get_in(content_first, ["name"])
          _              -> IO.puts "something tripped up"
       end
+  end
+
+  def handle_directory(content_rest,[],level,count) do
+    IO.puts ":handle_directory : nil" 
+    handle_content(content_rest, (level - 1), count)
+  end
+
+  def handle_directory(content_first, content_rest, level, count) do
+    IO.puts ":handle_directory : #{inspect(content_first)}" 
+    IO.puts get_in(content_first, ["name"])
+    handle_content(content_rest, (level + 1), count)
+  end
+
+  def handle_file(content_first, content_rest, level, count) do
+    IO.puts ":handle_file      : #{inspect(content_first)}" 
+    IO.puts get_in(content_first, ["name"])
+    handle_content(content_rest, (level), count)
   end
 
   def fareport(preamble, jsonbit, jsonbits, level, count) do
@@ -95,33 +121,29 @@ defmodule Elxrtree.CLI do
                      aliases: [f: :file, g: :group]
                     )
 
-    IO.puts "opts:"
-    IO.inspect opts
+    IO.puts "opts: #{inspect(opts)}"
 
     [opt| opts] = opts
 
-    IO.puts "opt:"
-    IO.inspect opt
-    IO.puts "opts:"
-    IO.inspect opts
+    IO.puts "opt: #{inspect(opt)} "
+    IO.puts "opts: #{inspect(opts)}"
 
     {file, filename} =  opt
-
-    IO.puts "file(1):"
-    IO.inspect file
-    IO.puts "filename:"
-    IO.inspect filename
+    IO.puts "filename: #{inspect(filename)}"
 
     {:ok, file} = File.open(filename)
 
-    IO.puts "file(2):"
-    IO.inspect file
-
-    IO.puts "filecontent(1):"
     {:ok, filecontent} = File.read(filename)
+#    IO.puts "check filecontent:"
+#    IO.inspect filecontent
 
-    IO.puts "filecontent(2):"
-    IO.puts filecontent
+
+#    IO.puts "filecontent1: #{inspect(filecontent)}"
+#    IO.puts "filecontent2: #{IO.inspect(filecontent)}"
+#    IO.puts "filecontent3: #{IO.puts(filecontent)}"
+
+    IO.puts "filecontent: #{filecontent}"
+
 
     do_fareport(filecontent)
   end 
