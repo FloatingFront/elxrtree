@@ -25,19 +25,61 @@ defmodule Elxrtree.CLI do
      IO.inspect fajsonstructure
 
      decodedfajsonstructure = Poison.decode(fajsonstructure)
-
-     IO.puts "decodedfajsonstructure:"
-     IO.inspect decodedfajsonstructure
-
-
-#     [jsonbit|jsonbits]= fajsonstructure
-
-     IO.puts "jsonbit:"
-#     IO.inspect jsonbit
-     IO.puts "jsonbits:"
-#     IO.inspect jsonbits
+#     IO.puts "decodedfajsonstructure:"
+#      |> IO.inspect decodedfajsonstructure
+      |> IO.inspect
+      |> handle_struct
 
 #     fareport(preamble, jsonbit, jsonbits, level, count)
+
+  end
+
+  def handle_struct({:ok, content }) do
+     IO.puts "handle_treestuct 1"
+     [treestruct | summary ] = content
+     [summarystruct | rest]  = summary
+     IO.inspect summarystruct
+     IO.inspect treestruct
+     
+     handle_treestruct(treestruct) 
+  end
+
+  def handle_struct({_,_}) do
+#    IO.inspect
+    IO.puts "Something went wrong:handle_struct 2"
+  end
+
+  def handle_treestruct(treestruct) do
+
+     IO.puts "handle_treestruct"
+     IO.puts "treestruct"
+     IO.inspect treestruct
+     IO.puts "name"
+     IO.inspect treestruct["name"]
+     IO.puts "type"
+     IO.inspect treestruct["type"]
+     IO.puts "contents"
+     IO.inspect treestruct["contents"]
+     IO.puts "treestruct"
+     IO.inspect treestruct
+     handle_content(treestruct["contents"],0)
+  end
+
+  def handle_content(content,index) do
+      IO.puts "handle_content"     
+      IO.inspect content
+      IO.puts "index"
+      IO.inspect index
+      IO.puts "content_type"
+      [first | content_type_rest] = content
+      content_type_1 = get_in(first, ["type"] )
+      IO.inspect content_type_1
+      IO.puts "case content type"
+      case content_type_1 do
+         "directory"  -> IO.inspect content[:type]
+         "file"       -> IO.inspect get_in(first, ["name"])
+         _              -> IO.puts "something tripped up"
+      end
   end
 
   def fareport(preamble, jsonbit, jsonbits, level, count) do
