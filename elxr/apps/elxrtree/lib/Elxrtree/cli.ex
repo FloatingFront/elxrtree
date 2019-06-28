@@ -19,6 +19,7 @@ defmodule Elxrtree.CLI do
   def handle_filecontent(json_structure)  do
      log_where(__ENV__)
      decoded_json_structure = Poison.decode(json_structure)
+      |> IO.inspect 
       |> handle_decoded_json_struct
   end
 
@@ -26,9 +27,43 @@ defmodule Elxrtree.CLI do
      log_where(__ENV__)
 #     %{function: {name,arity}}  = __ENV__ 
 #     IO.puts "where : #{name}"
+
+     [struct|struct_rest] = content
+
      [dir_struct | summary ] = content
+
      [summarystruct | rest]  = summary
-     handle_dir_struct(dir_struct) 
+
+     IO.puts "content        : #{inspect content}\n"
+     IO.puts "struct         : #{inspect struct}\n"
+     IO.puts "struct_rest    : #{inspect struct_rest}\n"
+     IO.puts "dir_struct     : #{inspect dir_struct}\n"
+     IO.puts "summary        : #{inspect summary}\n"
+     IO.puts "summarystructs : #{inspect summarystruct}\n"
+     IO.puts "rest           : #{inspect rest}\n"
+#     handle_dir_struct(dir_struct) 
+     handle_struct(content)
+  end
+
+  def handle_struct([struct_head|struct_rest]) do
+     log_where(__ENV__,"head")
+     IO.puts "struct_head    : #{inspect struct_head}\n"
+     IO.puts "struct_rest    : #{inspect struct_rest}\n"
+     handle_struct(struct_head)
+     handle_struct(struct_rest)
+  end
+
+  def handle_struct(%{} = content) do
+    log_where(__ENV__,"map")
+    IO.puts "content         : #{inspect content}\n" 
+  end
+
+  def handle_struct( %{type: "file", name: name, content: content }) do
+     log_where(__ENV__,"file")
+  end
+
+  def handle_struct([struct_head|struct_rest]) do
+     log_where(__ENV__,"rest")
   end
 
   def handle_decoded_json_struct({_,_}) do
@@ -38,6 +73,10 @@ defmodule Elxrtree.CLI do
 
   def log_where( %{function: {function_name,function_arity}} ) do
     IO.puts "==== #{function_name} ==== #{function_arity} ===="
+  end   
+
+  def log_where( %{function: {function_name,function_arity}}, type ) do
+    IO.puts "==== #{function_name} ==== #{function_arity} ==== #{type}"
   end   
 
   def handle_dir_struct(dir_struct) do
@@ -142,5 +181,4 @@ defmodule Elxrtree.CLI do
     handle_filecontent(filecontent)
   end 
 end
-
 
