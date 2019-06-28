@@ -26,9 +26,9 @@ defmodule Elxrtree.CLI do
      log_where(__ENV__)
 #     %{function: {name,arity}}  = __ENV__ 
 #     IO.puts "where : #{name}"
-     [dirstruct | summary ] = content
+     [dir_struct | summary ] = content
      [summarystruct | rest]  = summary
-     handle_dirstruct(dirstruct) 
+     handle_dir_struct(dir_struct) 
   end
 
   def handle_decoded_json_struct({_,_}) do
@@ -40,13 +40,13 @@ defmodule Elxrtree.CLI do
     IO.puts "==== #{function_name} ==== #{function_arity} ===="
   end   
 
-  def handle_dirstruct(dirstruct) do
+  def handle_dir_struct(dir_struct) do
      log_where(__ENV__)
-     IO.puts "name    : #{inspect dirstruct["name"]}"
-     IO.puts "type    : #{inspect dirstruct["type"]}"
-     IO.puts "contents: #{inspect dirstruct["contents"]}"
+     IO.puts "name    : #{inspect dir_struct["name"]}"
+     IO.puts "type    : #{inspect dir_struct["type"]}"
+     IO.puts "contents: #{inspect dir_struct["contents"]}"
 # TODO : move start of break-up up to here...
-     handle_content(dirstruct["contents"],0,0)
+     handle_content(dir_struct["contents"],0,0)
   end
 
   def handle_content(nil,[],count) do
@@ -84,7 +84,6 @@ defmodule Elxrtree.CLI do
      IO.puts ":handle_directory : #{inspect(content_first)}" 
      IO.puts ": name            : #{get_in(content_first, ["name"])}"
      IO.puts ": type            : #{get_in(content_first, ["type"])}"
-     
      handle_content(content_first, (level), count)
      handle_content(content_rest, (level), count)
   end
