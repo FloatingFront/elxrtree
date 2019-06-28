@@ -63,15 +63,19 @@ defmodule Elxrtree.CLI do
     IO.puts "content         : #{inspect content}\n" 
   end
 
-  def handle_struct(%{"type" => "directory", "contents" => dir_content} = content) do
+  def handle_struct(%{"type" => "directory", "contents" => dir_contents ,"name" => name} = content) do
     log_where(__ENV__,"map-directory")
-    IO.puts "content         : #{inspect content}\n"
-    handle_struct(dir_content) 
+    IO.puts "name            : #{name}"
+    IO.puts "type            : directory"
+    IO.puts "content         : #{inspect dir_contents}\n" 
+    handle_struct(dir_contents) 
   end
 
-  def handle_struct(%{"type" => "report"} = content) do
+  def handle_struct(%{"type" => "report", "directories" => directories ,"files" => files} = content) do
     log_where(__ENV__,"map-report")
-    IO.puts "content         : #{inspect content}\n" 
+    IO.puts "directories     : #{directories}"
+    IO.puts "type            : report"
+    IO.puts "files           : #{files}\n"
   end
 
   def handle_struct(%{} = content) do
