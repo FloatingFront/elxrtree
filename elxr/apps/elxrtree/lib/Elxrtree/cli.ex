@@ -46,11 +46,16 @@ defmodule Elxrtree.CLI do
   end
 
   def handle_struct([struct_head|struct_rest]) do
-     log_where(__ENV__,"head")
+     log_where(__ENV__,"list-head")
      IO.puts "struct_head    : #{inspect struct_head}\n"
      IO.puts "struct_rest    : #{inspect struct_rest}\n"
      handle_struct(struct_head)
      handle_struct(struct_rest)
+  end
+
+  def handle_struct([] = content) do
+    log_where(__ENV__,"list-empty")
+    IO.puts "content         : #{inspect content}\n" 
   end
 
   def handle_struct(%{"type" => "file"} = content) do
@@ -58,9 +63,10 @@ defmodule Elxrtree.CLI do
     IO.puts "content         : #{inspect content}\n" 
   end
 
-  def handle_struct(%{"type" => "directory"} = content) do
+  def handle_struct(%{"type" => "directory", "contents" => dir_content} = content) do
     log_where(__ENV__,"map-directory")
-    IO.puts "content         : #{inspect content}\n" 
+    IO.puts "content         : #{inspect content}\n"
+    handle_struct(dir_content) 
   end
 
   def handle_struct(%{"type" => "report"} = content) do
