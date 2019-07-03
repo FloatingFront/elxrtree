@@ -26,60 +26,73 @@ defmodule Elxrtree.CLI do
 
   def handle_decoded_json_struct({:ok, content}) do
     log_where(__ENV__)
+    dir_level=0
     #     %{function: {name,arity}}  = __ENV__ 
     #     IO.puts "where : #{name}"
     IO.puts("content          : #{inspect(content)}\n")
-    handle_struct(content)
+    handle_struct(content, dir_level)
   end
 
-  def handle_struct([struct_head | struct_rest]) do
+  def handle_struct([struct_head | struct_rest], dir_level)  do
     log_where(__ENV__, "list-head")
+    IO.puts("dir-level         : #{dir_level}")
     IO.puts("struct_head      : #{inspect(struct_head)}\n")
     IO.puts("struct_rest      : #{inspect(struct_rest)}\n")
-    handle_struct(struct_head)
-    handle_struct(struct_rest)
+    handle_struct(struct_head, dir_level)
+    handle_struct(struct_rest, dir_level)
   end
 
-  def handle_struct([] = content) do
+  def handle_struct([] = content, dir_level) do
     log_where(__ENV__, "list-empty")
+    dir_level = dir_level - 1
+    IO.puts("dir-level         : #{dir_level}")
     IO.puts("content           : #{inspect(content)}\n")
   end
 
-  def handle_struct(%{"type" => "file"} = content) do
+  def handle_struct(%{"type" => "file", "name" => name} = content, dir_level) do
     log_where(__ENV__, "map-file")
+    IO.puts("dir-level         : #{dir_level}")
+    IO.puts("name              : #{name}")
+    IO.puts("type              : file")
     IO.puts("content-file      : #{inspect(content)}\n")
   end
 
   def handle_struct(
-        %{"type" => "directory", "contents" => dir_contents, "name" => name} = content
+        %{"type" => "directory", "contents" => dir_contents, "name" => name} = content, dir_level
       ) do
     log_where(__ENV__, "map-directory")
+    dir_level = dir_level + 1
+    IO.puts("dir-level         : #{dir_level}")
     IO.puts("name              : #{name}")
     IO.puts("type              : directory")
     IO.puts("content           : #{inspect(dir_contents)}\n")
-    handle_struct(dir_contents)
+    handle_struct(dir_contents, dir_level)
   end
 
   def handle_struct(
-        %{"type" => "report", "directories" => directories, "files" => files} = content
+        %{"type" => "report", "directories" => directories, "files" => files} = content, dir_level
       ) do
     log_where(__ENV__, "map-report")
+    IO.puts("dir-level         : #{dir_level}")
     IO.puts("directories       : #{directories}")
     IO.puts("type              : report")
     IO.puts("files             : #{files}\n")
   end
 
-  def handle_struct(%{} = content) do
+  def handle_struct(%{} = content, dir_level) do
     log_where(__ENV__, "map-empty")
+    IO.puts("dir-level         : #{dir_level}")
     IO.puts("content           : #{inspect(content)}\n")
   end
 
-  def handle_struct(%{type: "file", name: name, content: content}) do
+  def handle_struct(%{type: "file", name: name, content: content}, dir_level) do
     log_where(__ENV__, "file")
+    IO.puts("dir-level         : #{dir_level}")
   end
 
-  def handle_struct([struct_head | struct_rest]) do
+  def handle_struct([struct_head | struct_rest], dir_level) do
     log_where(__ENV__, "rest")
+    IO.puts("dir-level         : #{dir_level}")
   end
 
   def handle_decoded_json_struct({_, _}) do
