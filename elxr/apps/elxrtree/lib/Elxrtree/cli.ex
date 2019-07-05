@@ -3,6 +3,9 @@ defmodule Elxrtree.CLI do
   Documentation for Elxrtree.
   """
 
+  alias Elxrtree.ReportLines
+
+
   @doc """
   Hello world.
 
@@ -15,6 +18,18 @@ defmodule Elxrtree.CLI do
   def hello do
     :world
   end
+
+#  TODO =  """
+#  ds = directory slash  // /
+#  dc = directory colour // blue
+#  fc = file colour      // black
+#  so = sort order       // ascending
+#  sc = sort columns     // 1+ - column one, ascending, 3- - column 3 descending
+#       1+2-3+ - column 1 ascending, column 2 descending, column 3 ascending
+#  ss = sort stable      // true
+#   
+#  """
+
 
   def handle_filecontent(json_structure) do
     log_where(__ENV__)
@@ -46,7 +61,7 @@ defmodule Elxrtree.CLI do
     log_where(__ENV__, "list-empty")
     dir_level = dir_level - 1
     IO.puts("dir-level         : #{dir_level}")
-    IO.puts("content           : #{inspect(content)}\n")
+#    IO.puts("content           : #{inspect(content)}\n")
   end
 
   def handle_struct(%{"type" => "file", "name" => name} = content, dir_level) do
