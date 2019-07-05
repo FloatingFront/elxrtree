@@ -30,7 +30,6 @@ defmodule Elxrtree.CLI do
 #   
 #  """
 
-
   def handle_filecontent(json_structure) do
     log_where(__ENV__)
     #     decoded_json_structure = 

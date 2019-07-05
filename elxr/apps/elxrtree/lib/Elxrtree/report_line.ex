@@ -1,4 +1,4 @@
-defmodule Elxrtree.ReportLines do
+defmodule Elxrtree.ReportLine do
   defstruct [ 
               name:   "", # "HOWTO.txt" 
               size:    0, # 209, 
