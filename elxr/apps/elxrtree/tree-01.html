@@ -1,0 +1,67 @@
+<style>
+
+.elxrtree, .elxrtree ul, .elxrtree li {
+     position: relative;
+}
+
+.elxrtree ul {
+    list-style: none;
+    padding-left: 32px;
+}
+
+.elxrtree li::before, .elxrtree li::after {
+    content: "";
+    position: absolute;
+    left: -12px;
+}
+
+.elxrtree li::before {
+    border-top: 1px solid #000;
+    top: 9px;
+    width: 8px;
+    height: 0;
+}
+
+.elxrtree li::after {
+    border-left: 1px solid #000;
+    height: 100%;
+    width: 0px;
+    top: 2px;
+}
+
+.elxrtree ul > li:last-child::after {
+    height: 8px;
+}
+
+</style>
+<div class="elxrtree">
+  <ul>
+    <li>
+      Dir 1
+      <ul>
+        <li>
+          Dir 2
+          <ul>
+            <li>File 1</li>
+            <li>File 2</li>
+          </ul>
+        </li>
+        <li>
+          Dir 3
+          <ul>
+            <li>File 3</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      Dir 4
+      <ul>
+        <li>File 4</li>
+        <li>File 5</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+
