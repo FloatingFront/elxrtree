@@ -4,7 +4,7 @@ defmodule Elxrtree.CLI do
   """
 
   alias Elxrtree.ReportLines
-
+  alias Elxrtree.CssStyle
 
   @doc """
   Hello world.
@@ -44,6 +44,7 @@ defmodule Elxrtree.CLI do
     dir_level=0
     #     %{function: {name,arity}}  = __ENV__ 
     #     IO.puts "where : #{name}"
+    IO.puts "#{CssStyle.apply_css_style()}"
     IO.puts("content          : #{inspect(content)}\n")
     handle_struct(content, dir_level)
   end
@@ -62,6 +63,7 @@ defmodule Elxrtree.CLI do
     dir_level = dir_level - 1
     IO.puts("dir-level         : #{dir_level}")
 #    IO.puts("content           : #{inspect(content)}\n")
+    IO.puts "#{CssStyle.apply_unordered_list_end}"
   end
 
   def handle_struct(%{"type" => "file", "name" => name} = content, dir_level) do
@@ -70,13 +72,17 @@ defmodule Elxrtree.CLI do
     IO.puts("name              : #{name}")
     IO.puts("type              : file")
     IO.puts("content-file      : #{inspect(content)}\n")
+    IO.puts "#{CssStyle.apply_list_item_file(name)}"
+    
   end
 
   def handle_struct(
         %{"type" => "directory", "contents" => dir_contents, "name" => name} = content, dir_level
       ) do
     log_where(__ENV__, "map-directory")
-    dir_level = dir_level + 1
+    pdir_level = dir_level + 1
+    IO.puts "#{CssStyle.apply_unordered_list_begin}"
+      
     IO.puts("dir-level         : #{dir_level}")
     IO.puts("name              : #{name}")
     IO.puts("type              : directory")
