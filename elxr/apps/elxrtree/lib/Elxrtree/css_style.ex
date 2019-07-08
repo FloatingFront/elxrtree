@@ -41,16 +41,31 @@ defmodule Elxrtree.CssStyle do
   end 
 
   def apply_list_item_file(item) do
-    IO.puts ("<li> #{item} </li>")
+    "<li> #{item} </li>"
+  end
+
+  def apply_list_items_directory_begin(item) do
+    "<li> #{item <> "\/"}"
+  end
+
+  def apply_list_items_directory_end() do
+    "</li>"
   end
 
   def apply_unordered_list_begin() do
-    IO.puts ("<ul>")    
+    "<ul>"    
   end
 
   def apply_unordered_list_end() do
-    IO.puts ("</ul>")
+    "</ul>"
   end  
 
+  def apply_div_begin() do
+    "<div class=\"elxrtree\">"
+  end
+
+  def apply_div_end() do
+    "</div>"
+  end
 end
 
