@@ -66,8 +66,8 @@ defmodule Elxrtree.CLI do
     dir_level = dir_level - 1
 #    IO.puts("dir-level         : #{dir_level}")
 #    IO.puts("content           : #{inspect(content)}\n")
-    IO.puts "#{CssStyle.apply_unordered_list_end}"
     IO.puts "#{CssStyle.apply_list_items_directory_end}"
+    IO.puts "#{CssStyle.apply_unordered_list_end}"
   end
 
   def handle_struct(%{"type" => "file", "name" => name} = content, dir_level) do
@@ -88,8 +88,8 @@ defmodule Elxrtree.CLI do
     dir_level = dir_level + 1
 #    log_directory(content, dir_level)
 #    IO.puts "#{name}"
-    IO.puts "#{CssStyle.apply_unordered_list_begin}"
     IO.puts "#{CssStyle.apply_list_items_directory_begin(name)}"
+    IO.puts "#{CssStyle.apply_unordered_list_begin}"
 #    IO.puts("dir-level         : #{dir_level}")
 #    IO.puts("name              : #{name}")
 #    IO.puts("type              : directory")
@@ -100,11 +100,11 @@ defmodule Elxrtree.CLI do
   def handle_struct(
         %{"type" => "report", "directories" => directories, "files" => files} = content, dir_level
       ) do
-    log_where(__ENV__, "map-report")
-    IO.puts("dir-level         : #{dir_level}")
-    IO.puts("directories       : #{directories}")
-    IO.puts("type              : report")
-    IO.puts("files             : #{files}\n")
+#    log_where(__ENV__, "map-report")
+#    IO.puts("dir-level         : #{dir_level}")
+    IO.puts("Directories       : #{directories}")
+#    IO.puts("type              : report")
+    IO.puts(" Files             : #{files}\n")
   end
 
   def handle_struct(%{} = content, dir_level) do
