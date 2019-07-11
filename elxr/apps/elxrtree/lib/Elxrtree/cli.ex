@@ -91,7 +91,6 @@ defmodule Elxrtree.CLI do
     log_where(__ENV__, "map-empty")
   end
 
-
   def handle_decoded_json_struct({_, _}) do
     log_where(__ENV__)
     IO.puts("Something went wrong:handle_decoded_json_struct 2")
@@ -131,33 +130,83 @@ defmodule Elxrtree.CLI do
     handle_content(content_rest, level, count)
   end
 
-  @doc """
-  Entry point for the elxrtree utility.
-  """
-  def main(args) do
-#    {opts, _, _} =
-    {parsed, remaining, errors} =
-#      OptionParser.parse_head(
+  def parse_args(args) do
+    options =     
       OptionParser.parse(
         args,
         switches: [file: :string, help: :boolean],
         aliases: [f: :file, h: :help]
       )
+  end
 
-#    IO.puts("#{inspect(opts)}")
-    IO.puts("parsed: #{inspect(parsed)} - remaining: #{inspect(remaining)} - errors:#{inspect(errors)}" )
+  def handle_args(options) do
+    {parsed, remaining, errors} = options
+    case parsed do
+     [help: true]     -> :help
+     [file: filename] -> {:file, filename}
+     [_,_]            -> {}  # legal arguments options should never reach here
+    end 
+  end
 
-#    [opt | opts] = opts
-    [opt | opts] = parsed 
+  def process_args(:help) do
+     IO.puts """
+     elxrtree
+     --------
+     Utility for generating html from directory content structure in json format.
+     usage: elxrtree -h   
+     usage: elxrtree -f json-file
+     example: elxrtree -f some-directory-structure.json
+     """
+  end
 
-#    IO.puts("opt: #{inspect(opt)} ")
-#    IO.puts("opts: #{inspect(opts)}")
-
-    {file, filename} = opt
-#    IO.puts("filename: #{inspect(filename)}")
+  def process_args({:file, filename}) do  
+     IO.puts "File: #{inspect(filename)}"
     {:ok, file} = File.open(filename)
     {:ok, filecontent} = File.read(filename)
-#    IO.puts("filecontent: #{filecontent}")
+    IO.puts("filecontent: #{filecontent}")
     handle_filecontent(filecontent)
   end
+
+  def process_args({}) do
+    IO.puts("Something went wrong... please check the argument options")
+    process_args(:help)
+  end
+
+
+  @doc """
+  Entry point for the elxrtree utility.
+  """
+  def main(args) do
+    parse_args(args)
+    |> IO.inspect
+    |> handle_args
+    |> IO.inspect
+    |> process_args
+  end
+
+ #    {opts, _, _} =
+#    {parsed, remaining, errors} =
+ #      OptionParser.parse_head(
+#      OptionParser.parse(
+#        args,
+#        switches: [file: :string, help: :boolean],
+#        aliases: [f: :file, h: :help]
+#      )
+
+ #    IO.puts("#{inspect(opts)}")
+#    IO.puts("parsed: #{inspect(parsed)} - remaining: #{inspect(remaining)} - errors:#{inspect(errors)}" )
+
+ #    [opt | opts] = opts
+#    [opt | opts] = parsed 
+
+ #    IO.puts("opt: #{inspect(opt)} ")
+ #    IO.puts("opts: #{inspect(opts)}")
+
+#    {file, filename} = opt
+ #    IO.puts("filename: #{inspect(filename)}")
+#    {:ok, file} = File.open(filename)
+#    {:ok, filecontent} = File.read(filename)
+ #    IO.puts("filecontent: #{filecontent}")
+#    handle_filecontent(filecontent)
+#  end
 end
