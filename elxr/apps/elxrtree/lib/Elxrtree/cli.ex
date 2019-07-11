@@ -73,8 +73,13 @@ defmodule Elxrtree.CLI do
 #    log_where(__ENV__, "map-directory")
     dir_level = dir_level + 1
 #    log_directory(content, dir_level)
-    IO.puts "#{CssStyle.apply_list_items_directory_begin(name)}"
-    IO.puts "#{CssStyle.apply_unordered_list_begin}"
+    case dir_level do
+      1 ->   IO.puts("#{CssStyle.apply_list_items_root_directory(name)}") 
+             IO.puts("#{CssStyle.apply_unordered_list_begin}")
+
+      _ ->   IO.puts("#{CssStyle.apply_list_items_directory_begin(name)}")
+             IO.puts("#{CssStyle.apply_unordered_list_begin}")
+    end
     handle_struct(dir_contents, dir_level)
   end
 
@@ -123,12 +128,12 @@ defmodule Elxrtree.CLI do
     IO.puts(":handle_content  : nil")
   end
 
-  def handle_file(content_first, content_rest, level, count) do
-#    log_where(__ENV__)
-#    IO.puts(":handle_file      : #{inspect(content_first)}")
-#    IO.puts(get_in(content_first, ["name"]))
-    handle_content(content_rest, level, count)
-  end
+#  def handle_file(content_first, content_rest, level, count) do
+##    log_where(__ENV__)
+##    IO.puts(":handle_file      : #{inspect(content_first)}")
+##    IO.puts(get_in(content_first, ["name"]))
+#    handle_content(content_rest, level, count)
+#  end
 
   def parse_args(args) do
     options =     
@@ -144,7 +149,7 @@ defmodule Elxrtree.CLI do
     case parsed do
      [help: true]     -> :help
      [file: filename] -> {:file, filename}
-     [_,_]            -> {}  # legal arguments options should never reach here
+     [_,_]            -> {}  # valid arguments options should never reach here
     end 
   end
 
@@ -161,10 +166,10 @@ defmodule Elxrtree.CLI do
 
   def process_args({:file, filename}) do  
      IO.puts "File: #{inspect(filename)}"
-    {:ok, file} = File.open(filename)
-    {:ok, filecontent} = File.read(filename)
-    IO.puts("filecontent: #{filecontent}")
-    handle_filecontent(filecontent)
+     case File.read(filename) do
+        {:ok, filecontent} -> handle_filecontent(filecontent)
+        {:error, reason}   -> IO.puts("file: [#{filename}]  #{:file.format_error(reason)}")
+     end 
   end
 
   def process_args({}) do
@@ -172,9 +177,9 @@ defmodule Elxrtree.CLI do
     process_args(:help)
   end
 
-
   @doc """
-  Entry point for the elxrtree utility.
+  elxrtree utility.
+  see elxrtree -h for further info (or grep :help)
   """
   def main(args) do
     parse_args(args)
@@ -183,30 +188,4 @@ defmodule Elxrtree.CLI do
     |> IO.inspect
     |> process_args
   end
-
- #    {opts, _, _} =
-#    {parsed, remaining, errors} =
- #      OptionParser.parse_head(
-#      OptionParser.parse(
-#        args,
-#        switches: [file: :string, help: :boolean],
-#        aliases: [f: :file, h: :help]
-#      )
-
- #    IO.puts("#{inspect(opts)}")
-#    IO.puts("parsed: #{inspect(parsed)} - remaining: #{inspect(remaining)} - errors:#{inspect(errors)}" )
-
- #    [opt | opts] = opts
-#    [opt | opts] = parsed 
-
- #    IO.puts("opt: #{inspect(opt)} ")
- #    IO.puts("opts: #{inspect(opts)}")
-
-#    {file, filename} = opt
- #    IO.puts("filename: #{inspect(filename)}")
-#    {:ok, file} = File.open(filename)
-#    {:ok, filecontent} = File.read(filename)
- #    IO.puts("filecontent: #{filecontent}")
-#    handle_filecontent(filecontent)
-#  end
 end

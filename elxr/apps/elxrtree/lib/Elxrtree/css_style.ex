@@ -36,12 +36,22 @@ defmodule Elxrtree.CssStyle do
     height: 8px;
 }
 
+.elxrtree li {
+   color: blue;
+}
+
 </style>
 """
   end 
 
   def apply_list_item_file(item) do
-    "<li> #{item} </li>"
+    "<li style=\"color:black\" > #{item} </li>"
+  end
+
+  def apply_list_items_root_directory(item) do
+    "<li style=\"color:blue;position: relative;
+         left: -1px;
+         top: 16px;\" > #{item} </li>"
   end
 
   def apply_list_items_directory_begin(item) do
