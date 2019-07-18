@@ -1,0 +1,340 @@
+059:<div class="elxrtree-root">
+060:  <ul>
+061:    <li> Root-Dir/../.. </li>
+062:  </ul>
+063:</div>
+064:<div class="elxrtree">
+065:  <ul><!-- +ul -->
+067:    <li> HOWTO.txt </li>
+068:    <li> README.md </li>
+069:    <li>
+070:      <div class="elxrtree-dir">
+071:	<li>_build/
+072:	  <div class="elxrtree-dir-contents">
+073:	    <ul><!-- +ul -->
+075:	      <li>
+076:		<div class="elxrtree-dir">
+077:		  <li>dev/
+078:		    <div class="elxrtree-dir-contents">
+079:		      <ul><!-- +ul -->
+081:			<li>
+082:			  <div class="elxrtree-dir">
+083:			    <li>consolidated/
+084:			      <div class="elxrtree-dir-contents">
+085:				<ul><!-- +ul -->
+087:				  <li> Elixir.Collectable.beam </li>
+088:				  <li> Elixir.Enumerable.beam </li>
+089:				  <li> Elixir.IEx.Info.beam </li>
+090:				  <li> Elixir.Inspect.beam </li>
+091:				  <li> Elixir.List.Chars.beam </li>
+092:				  <li> Elixir.String.Chars.beam </li>
+093:				</ul><!-- -ul -->
+094:			      </div>
+095:			    </li>
+096:			  </div>
+097:			</li>
+099:			<li>
+100:			  <div class="elxrtree-dir">
+101:			    <li>lib/
+102:			      <div class="elxrtree-dir-contents">
+103:				<ul><!-- +ul -->
+105:				  <li>
+106:				    <div class="elxrtree-dir">
+107:				      <li>elxrtree/
+108:					<div class="elxrtree-dir-contents">
+109:					  <ul><!-- +ul -->
+111:					    <li>
+112:					      <div class="elxrtree-dir">
+113:						<li>consolidated/
+114:						  <div class="elxrtree-dir-contents">
+115:						    <ul><!-- +ul -->
+117:						      <li> Elixir.Collectable.beam </li>
+118:						      <li> Elixir.Enumerable.beam </li>
+119:						      <li> Elixir.IEx.Info.beam </li>
+120:						      <li> Elixir.Inspect.beam </li>
+121:						      <li> Elixir.List.Chars.beam </li>
+122:						      <li> Elixir.Poison.Decoder.beam </li>
+123:						      <li> Elixir.Poison.Encoder.beam </li>
+124:						      <li> Elixir.String.Chars.beam </li>
+125:						    </ul><!-- -ul -->
+126:						  </div>
+127:						</li>
+128:					      </div>
+129:					    </li>
+131:					    <li>
+132:					      <div class="elxrtree-dir">
+133:						<li>ebin/
+134:						  <div class="elxrtree-dir-contents">
+135:						    <ul><!-- +ul -->
+137:						      <li> Elixir.Elxrtree.CLI.beam </li>
+138:						      <li> Elixir.Elxrtree.CssStyle.beam </li>
+139:						      <li> Elixir.Elxrtree.ReportLine.beam </li>
+140:						      <li> elxrtree.app </li>
+141:						    </ul><!-- -ul -->
+142:						  </div>
+143:						</li>
+144:					      </div>
+145:					    </li>
+147:					  </ul><!-- -ul -->
+148:					</div>
+149:				      </li>
+150:				    </div>
+151:				  </li>
+153:				  <li>
+154:				    <div class="elxrtree-dir">
+155:				      <li>poison/
+156:					<div class="elxrtree-dir-contents">
+157:					  <ul><!-- +ul -->
+159:					    <li>
+160:					      <div class="elxrtree-dir">
+161:						<li>ebin/
+162:						  <div class="elxrtree-dir-contents">
+163:						    <ul><!-- +ul -->
+165:						      <li> Elixir.Poison.Decode.beam </li>
+166:						      <li> Elixir.Poison.DecodeError.beam </li>
+167:						      <li> Elixir.Poison.Decoder.Any.beam </li>
+168:						      <li> Elixir.Poison.Decoder.beam </li>
+169:						      <li> Elixir.Poison.Encode.beam </li>
+170:						      <li> Elixir.Poison.EncodeError.beam </li>
+171:						      <li> Elixir.Poison.Encoder.Any.beam </li>
+172:						      <li> Elixir.Poison.Encoder.Atom.beam </li>
+173:						      <li> Elixir.Poison.Encoder.BitString.beam </li>
+174:						      <li> Elixir.Poison.Encoder.Date.beam </li>
+175:						      <li> Elixir.Poison.Encoder.DateTime.beam </li>
+176:						      <li> Elixir.Poison.Encoder.Float.beam </li>
+177:						      <li> Elixir.Poison.Encoder.HashSet.beam </li>
+178:						      <li> Elixir.Poison.Encoder.Integer.beam </li>
+179:						      <li> Elixir.Poison.Encoder.List.beam </li>
+180:						      <li> Elixir.Poison.Encoder.Map.beam </li>
+181:						      <li> Elixir.Poison.Encoder.MapSet.beam </li>
+182:						      <li> Elixir.Poison.Encoder.NaiveDateTime.beam </li>
+183:						      <li> Elixir.Poison.Encoder.Range.beam </li>
+184:						      <li> Elixir.Poison.Encoder.Stream.beam </li>
+185:						      <li> Elixir.Poison.Encoder.Time.beam </li>
+186:						      <li> Elixir.Poison.Encoder.beam </li>
+187:						      <li> Elixir.Poison.ParseError.beam </li>
+188:						      <li> Elixir.Poison.Parser.beam </li>
+189:						      <li> Elixir.Poison.Pretty.beam </li>
+190:						      <li> Elixir.Poison.beam </li>
+191:						      <li> poison.app </li>
+192:						    </ul><!-- -ul -->
+193:						  </div>
+194:						</li>
+195:					      </div>
+196:					    </li>
+198:					  </ul><!-- -ul -->
+199:					</div>
+200:				      </li>
+201:				    </div>
+202:				  </li>
+204:				</ul><!-- -ul -->
+205:			      </div>
+206:			    </li>
+207:			  </div>
+208:			</li>
+210:		      </ul><!-- -ul -->
+211:		    </div>
+212:		  </li>
+213:		</div>
+214:	      </li>
+216:	    </ul><!-- -ul -->
+217:	  </div>
+218:	</li>
+219:      </div>
+220:    </li>
+222:    <li>
+223:      <div class="elxrtree-dir">
+224:	<li>apps/
+225:	  <div class="elxrtree-dir-contents">
+226:	    <ul><!-- +ul -->
+228:	      <li>
+229:		<div class="elxrtree-dir">
+230:		  <li>elxrtree/
+231:		    <div class="elxrtree-dir-contents">
+232:		      <ul><!-- +ul -->
+234:			<li> README.md </li>
+235:			<li>
+236:			  <div class="elxrtree-dir">
+237:			    <li>config/
+238:			      <div class="elxrtree-dir-contents">
+239:				<ul><!-- +ul -->
+241:				  <li> config.exs </li>
+242:				</ul><!-- -ul -->
+243:			      </div>
+244:			    </li>
+245:			  </div>
+246:			</li>
+248:			<li> elxrtree </li>
+249:			<li>
+250:			  <div class="elxrtree-dir">
+251:			    <li>empty/
+252:			      <div class="elxrtree-dir-contents">
+253:				<ul><!-- +ul -->
+255:				</ul><!-- -ul -->
+256:			      </div>
+257:			    </li>
+258:			  </div>
+259:			</li>
+261:			<li>
+262:			  <div class="elxrtree-dir">
+263:			    <li>lib/
+264:			      <div class="elxrtree-dir-contents">
+265:				<ul><!-- +ul -->
+267:				  <li>
+268:				    <div class="elxrtree-dir">
+269:				      <li>Elxrtree/
+270:					<div class="elxrtree-dir-contents">
+271:					  <ul><!-- +ul -->
+273:					    <li> cli.ex </li>
+274:					    <li> css_style.ex </li>
+275:					    <li> report_line.ex </li>
+276:					  </ul><!-- -ul -->
+277:					</div>
+278:				      </li>
+279:				    </div>
+280:				  </li>
+282:				</ul><!-- -ul -->
+283:			      </div>
+284:			    </li>
+285:			  </div>
+286:			</li>
+288:			<li> mix.exs </li>
+289:			<li> out.txt </li>
+290:			<li>
+291:			  <div class="elxrtree-dir">
+292:			    <li>test/
+293:			      <div class="elxrtree-dir-contents">
+294:				<ul><!-- +ul -->
+296:				  <li> elxrtree_test.exs </li>
+297:				  <li> test_helper.exs </li>
+298:				</ul><!-- -ul -->
+299:			      </div>
+300:			    </li>
+301:			  </div>
+302:			</li>
+304:			<li> tree-01.fahtml </li>
+305:			<li> tree-01.html </li>
+306:			<li> tree-02.html </li>
+307:			<li> tree-03.html </li>
+308:			<li> tree-04.html </li>
+309:			<li> tree-05.html </li>
+310:			<li> tree-06-div.html </li>
+311:			<li> tree-06.html </li>
+312:			<li> tree-07.html </li>
+313:			<li> tree-08-div.html </li>
+314:			<li> tree-08.html </li>
+315:			<li> tree-09.html </li>
+316:			<li> tree-10.html </li>
+317:			<li> tree-11.html </li>
+318:			<li> tree-12-tinker-01.html </li>
+319:			<li> tree-12.html </li>
+320:			<li> tree-13-tinker-01.html </li>
+321:			<li> tree-13.html </li>
+322:			<li> tree-14.fahtml </li>
+323:			<li> tree-14.html </li>
+324:			<li> tree-15.html </li>
+325:			<li> tree-16.html </li>
+326:			<li> tree-17.html </li>
+327:			<li> tree-18-tinker-01.html </li>
+328:			<li> tree-18-tinker-02.html </li>
+329:			<li> tree-18.html </li>
+330:			<li> tree-19-tinker-01.html </li>
+331:			<li> tree-19-tinker-02-01.html </li>
+332:			<li> tree-19-tinker-02-02.html </li>
+333:			<li> tree-19-tinker-02.html </li>
+334:			<li> tree-19.html </li>
+335:			<li> tree-20-tinker-01.html </li>
+336:			<li> tree-20-tinker-02.html </li>
+337:			<li> tree-20.html </li>
+338:			<li> tree-21.html </li>
+339:			<li> tree-22.html </li>
+340:			<li> tree-23.html </li>
+341:			<li> tree-23.pdf </li>
+342:			<li> tree-24.html </li>
+343:			<li> tree-25.html </li>
+344:			<li> tree1.json </li>
+345:			<li> tree2.json </li>
+346:			<li> treetest-25.json </li>
+347:			<li> treetest-iex.txt </li>
+348:			<li> treetest.json </li>
+349:			<li> treetest_json.txt </li>
+350:			<li> treetest_json03.txt </li>
+351:			<li> treetest_json04.txt </li>
+352:			<li> treetest_json_2.txt </li>
+353:			<li> treetestbig.json </li>
+354:			<li> treetestbiglarge.json </li>
+355:			<li> treetestlarge.json </li>
+356:		      </ul><!-- -ul -->
+357:		    </div>
+358:		  </li>
+359:		</div>
+360:	      </li>
+362:	    </ul><!-- -ul -->
+363:	  </div>
+364:	</li>
+365:      </div>
+366:    </li>
+368:    <li>
+369:      <div class="elxrtree-dir">
+370:	<li>config/
+371:	  <div class="elxrtree-dir-contents">
+372:	    <ul><!-- +ul -->
+374:	      <li> config.exs </li>
+375:	    </ul><!-- -ul -->
+376:	  </div>
+377:	</li>
+378:      </div>
+379:    </li>
+381:    <li>
+382:      <div class="elxrtree-dir">
+383:	<li>deps/
+384:	  <div class="elxrtree-dir-contents">
+385:	    <ul><!-- +ul -->
+387:	      <li>
+388:		<div class="elxrtree-dir">
+389:		  <li>poison/
+390:		    <div class="elxrtree-dir-contents">
+391:		      <ul><!-- +ul -->
+393:			<li> LICENSE </li>
+394:			<li> README.md </li>
+395:			<li> VERSION </li>
+396:			<li> hex_metadata.config </li>
+397:			<li>
+398:			  <div class="elxrtree-dir">
+399:			    <li>lib/
+400:			      <div class="elxrtree-dir-contents">
+401:				<ul><!-- +ul -->
+403:				  <li>
+404:				    <div class="elxrtree-dir">
+405:				      <li>poison/
+406:					<div class="elxrtree-dir-contents">
+407:					  <ul><!-- +ul -->
+409:					    <li> decoder.ex </li>
+410:					    <li> encoder.ex </li>
+411:					    <li> parser.ex </li>
+412:					  </ul><!-- -ul -->
+413:					</div>
+414:				      </li>
+415:				    </div>
+416:				  </li>
+418:				  <li> poison.ex </li>
+419:				</ul><!-- -ul -->
+420:			      </div>
+421:			    </li>
+422:			  </div>
+423:			</li>
+425:			<li> mix.exs </li>
+426:		      </ul><!-- -ul -->
+427:		    </div>
+428:		  </li>
+429:		</div>
+430:	      </li>
+432:	    </ul><!-- -ul -->
+433:	  </div>
+434:	</li>
+435:      </div>
+436:    </li>
+438:    <li> mix.exs </li>
+439:    <li> mix.lock </li>
+445:  </ul>
+446:</div>

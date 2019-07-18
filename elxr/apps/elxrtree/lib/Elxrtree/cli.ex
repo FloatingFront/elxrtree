@@ -1,23 +1,12 @@
 defmodule Elxrtree.CLI do
   @moduledoc """
   Documentation for Elxrtree.
+  Command line utility (elxrtree) that reads a json file containing 
+  filesystem directory structure and generates a html-based visualization.  
   """
 
   alias Elxrtree.ReportLines
   alias Elxrtree.CssStyle
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Elxrtree.hello()
-      :world
-
-  """
-  def hello do
-    :world
-  end
 
 #  TODO =  """
 #  ds = directory slash  // /
@@ -42,7 +31,7 @@ defmodule Elxrtree.CLI do
 #    log_where(__ENV__)
     dir_level=0
     IO.puts "#{CssStyle.apply_css_style()}"
-    IO.puts "#{CssStyle.apply_div_begin()}"
+    # IO.puts "#{CssStyle.apply_div_begin("elxrtree-root")}"
     handle_struct(content, dir_level)
     IO.puts "#{CssStyle.apply_div_end()}"
   end
@@ -56,15 +45,21 @@ defmodule Elxrtree.CLI do
   def handle_struct([] = content, dir_level) do
 #    log_where(__ENV__, "list-empty")
     dir_level = dir_level - 1
-    IO.puts "#{CssStyle.apply_unordered_list_end}"
-    IO.puts "#{CssStyle.apply_list_items_directory_end}"
+#    IO.puts("dir-level         : #{dir_level}")
+    case (dir_level) do
+      dir_level when (dir_level > 0)   -> # output nothing
+                                          # IO.puts "#{CssStyle.apply_unordered_list_end}"
+                                          # IO.puts "#{CssStyle.apply_list_items_directory_end}"
+                                          IO.puts("<!-- dir_level(list_empty-gt0): #{dir_level} -->")
+      _                                -> # output nothing 
+                                          IO.puts("<!-- dir_level(list_empty--=0): #{dir_level} -->")
+    end    
   end
 
   def handle_struct(%{"type" => "file", "name" => name} = content, dir_level) do
 #    log_where(__ENV__, "map-file")
 #    log_file(content, dir_level)
     IO.puts "#{CssStyle.apply_list_item_file(name)}"
-    
   end
 
   def handle_struct(
@@ -75,12 +70,20 @@ defmodule Elxrtree.CLI do
 #    log_directory(content, dir_level)
     case dir_level do
       1 ->   IO.puts("#{CssStyle.apply_list_items_root_directory(name)}") 
-             IO.puts("#{CssStyle.apply_unordered_list_begin}")
+             # IO.puts("#{CssStyle.apply_unordered_list_begin}")
+             IO.puts("<!-- dir_level(--=1): #{dir_level} -->")
 
-      _ ->   IO.puts("#{CssStyle.apply_list_items_directory_begin(name)}")
-             IO.puts("#{CssStyle.apply_unordered_list_begin}")
+      _ ->   #IO.puts("#{CssStyle.apply_div_begin_dir("elxrtree-dir",name)}")
+             IO.puts("#{CssStyle.apply_list_items_directory_begin(name)}")
+             IO.puts("#{CssStyle.apply_unordered_list_begin(name)}")
+             IO.puts("<!-- dir_level(-/=1): #{dir_level} -->")
     end
     handle_struct(dir_contents, dir_level)
+    IO.puts("#{CssStyle.apply_unordered_list_end(name)}")
+  #  IO.puts("#{CssStyle.apply_div_end_dir(name)}")
+    IO.puts("#{CssStyle.apply_list_items_directory_end(name)}")
+    #IO.puts("#{CssStyle.apply_div_end_dir(name)}")
+    
   end
 
   def handle_struct(
@@ -128,13 +131,6 @@ defmodule Elxrtree.CLI do
     IO.puts(":handle_content  : nil")
   end
 
-#  def handle_file(content_first, content_rest, level, count) do
-##    log_where(__ENV__)
-##    IO.puts(":handle_file      : #{inspect(content_first)}")
-##    IO.puts(get_in(content_first, ["name"]))
-#    handle_content(content_rest, level, count)
-#  end
-
   def parse_args(args) do
     options =     
       OptionParser.parse(
@@ -165,7 +161,7 @@ defmodule Elxrtree.CLI do
   end
 
   def process_args({:file, filename}) do  
-     IO.puts "File: #{inspect(filename)}"
+#     IO.puts "File: #{inspect(filename)}"
      case File.read(filename) do
         {:ok, filecontent} -> handle_filecontent(filecontent)
         {:error, reason}   -> IO.puts("file: [#{filename}]  #{:file.format_error(reason)}")
@@ -183,9 +179,9 @@ defmodule Elxrtree.CLI do
   """
   def main(args) do
     parse_args(args)
-    |> IO.inspect
+#    |> IO.inspect
     |> handle_args
-    |> IO.inspect
+#    |> IO.inspect
     |> process_args
   end
 end

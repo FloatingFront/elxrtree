@@ -1,0 +1,425 @@
+iex(4)> {:ok, file} = File.open("./treetest.json")
+{:ok, #PID<0.174.0>}
+
+
+iex(7)> {:ok, filecontent} = File.read("./treetest.json")
+{:ok,
+ "[\n  {\"type\":\"directory\",\"name\":\".\",\"contents\":[\n    {\"type\":\"file\",\"name\":\"README.md\"},\n    {\"type\":\"directory\",\"name\":\"config\",\"contents\":[\n      {\"type\":\"file\",\"name\":\"config.exs\"}\n    ]},\n    {\"type\":\"file\",\"name\":\"elxrtree\"},\n    {\"type\":\"directory\",\"name\":\"empty\",\"contents\":[\n    ]},\n    {\"type\":\"directory\",\"name\":\"lib\",\"contents\":[\n      {\"type\":\"directory\",\"name\":\"Elxrtree\",\"contents\":[\n        {\"type\":\"file\",\"name\":\"cli.ex\"}\n      ]}\n    ]},\n    {\"type\":\"file\",\"name\":\"mix.exs\"},\n    {\"type\":\"directory\",\"name\":\"test\",\"contents\":[\n      {\"type\":\"file\",\"name\":\"elxrtree_test.exs\"},\n      {\"type\":\"file\",\"name\":\"test_helper.exs\"}\n    ]},\n    {\"type\":\"file\",\"name\":\"treetest.json\"},\n    {\"type\":\"file\",\"name\":\"treetestbig.json\"},\n    {\"type\":\"file\",\"name\":\"treetestbiglarge.json\"},\n    {\"type\":\"file\",\"name\":\"treetestlarge.json\"}\n  ]},\n  {\"type\":\"report\",\"directories\":5,\"files\":11}\n]\n"}
+
+
+iex(8)> filecontent
+"[\n  {\"type\":\"directory\",\"name\":\".\",\"contents\":[\n    {\"type\":\"file\",\"name\":\"README.md\"},\n    {\"type\":\"directory\",\"name\":\"config\",\"contents\":[\n      {\"type\":\"file\",\"name\":\"config.exs\"}\n    ]},\n    {\"type\":\"file\",\"name\":\"elxrtree\"},\n    {\"type\":\"directory\",\"name\":\"empty\",\"contents\":[\n    ]},\n    {\"type\":\"directory\",\"name\":\"lib\",\"contents\":[\n      {\"type\":\"directory\",\"name\":\"Elxrtree\",\"contents\":[\n        {\"type\":\"file\",\"name\":\"cli.ex\"}\n      ]}\n    ]},\n    {\"type\":\"file\",\"name\":\"mix.exs\"},\n    {\"type\":\"directory\",\"name\":\"test\",\"contents\":[\n      {\"type\":\"file\",\"name\":\"elxrtree_test.exs\"},\n      {\"type\":\"file\",\"name\":\"test_helper.exs\"}\n    ]},\n    {\"type\":\"file\",\"name\":\"treetest.json\"},\n    {\"type\":\"file\",\"name\":\"treetestbig.json\"},\n    {\"type\":\"file\",\"name\":\"treetestbiglarge.json\"},\n    {\"type\":\"file\",\"name\":\"treetestlarge.json\"}\n  ]},\n  {\"type\":\"report\",\"directories\":5,\"files\":11}\n]\n"
+
+
+iex(9)> Poison.decode(filecontent)
+{:ok,
+ [
+   %{
+     "contents" => [
+       %{"name" => "README.md", "type" => "file"},
+       %{
+         "contents" => [%{"name" => "config.exs", "type" => "file"}],
+         "name" => "config",
+         "type" => "directory"
+       },
+       %{"name" => "elxrtree", "type" => "file"},
+       %{"contents" => [], "name" => "empty", "type" => "directory"},
+       %{
+         "contents" => [
+           %{
+             "contents" => [%{"name" => "cli.ex", "type" => "file"}],
+             "name" => "Elxrtree",
+             "type" => "directory"
+           }
+         ],
+         "name" => "lib",
+         "type" => "directory"
+       },
+       %{"name" => "mix.exs", "type" => "file"},
+       %{
+         "contents" => [
+           %{"name" => "elxrtree_test.exs", "type" => "file"},
+           %{"name" => "test_helper.exs", "type" => "file"}
+         ],
+         "name" => "test",
+         "type" => "directory"
+       },
+       %{"name" => "treetest.json", "type" => "file"},
+       %{"name" => "treetestbig.json", "type" => "file"},
+       %{"name" => "treetestbiglarge.json", "type" => "file"},
+       %{"name" => "treetestlarge.json", "type" => "file"}
+     ],
+     "name" => ".",
+     "type" => "directory"
+   },
+   %{"directories" => 5, "files" => 11, "type" => "report"}
+ ]}
+
+
+iex(11)> content = Poison.decode(filecontent)
+{:ok,
+ [
+   %{
+     "contents" => [
+       %{"name" => "README.md", "type" => "file"},
+       %{
+         "contents" => [%{"name" => "config.exs", "type" => "file"}],
+         "name" => "config",
+         "type" => "directory"
+       },
+       %{"name" => "elxrtree", "type" => "file"},
+       %{"contents" => [], "name" => "empty", "type" => "directory"},
+       %{
+         "contents" => [
+           %{
+             "contents" => [%{"name" => "cli.ex", "type" => "file"}],
+             "name" => "Elxrtree",
+             "type" => "directory"
+           }
+         ],
+         "name" => "lib",
+         "type" => "directory"
+       },
+       %{"name" => "mix.exs", "type" => "file"},
+       %{
+         "contents" => [
+           %{"name" => "elxrtree_test.exs", "type" => "file"},
+           %{"name" => "test_helper.exs", "type" => "file"}
+         ],
+         "name" => "test",
+         "type" => "directory"
+       },
+       %{"name" => "treetest.json", "type" => "file"},
+       %{"name" => "treetestbig.json", "type" => "file"},
+       %{"name" => "treetestbiglarge.json", "type" => "file"},
+       %{"name" => "treetestlarge.json", "type" => "file"}
+     ],
+     "name" => ".",
+     "type" => "directory"
+   },
+   %{"directories" => 5, "files" => 11, "type" => "report"}
+ ]}
+
+
+iex(12)> content
+{:ok,
+ [
+   %{
+     "contents" => [
+       %{"name" => "README.md", "type" => "file"},
+       %{
+         "contents" => [%{"name" => "config.exs", "type" => "file"}],
+         "name" => "config",
+         "type" => "directory"
+       },
+       %{"name" => "elxrtree", "type" => "file"},
+       %{"contents" => [], "name" => "empty", "type" => "directory"},
+       %{
+         "contents" => [
+           %{
+             "contents" => [%{"name" => "cli.ex", "type" => "file"}],
+             "name" => "Elxrtree",
+             "type" => "directory"
+           }
+         ],
+         "name" => "lib",
+         "type" => "directory"
+       },
+       %{"name" => "mix.exs", "type" => "file"},
+       %{
+         "contents" => [
+           %{"name" => "elxrtree_test.exs", "type" => "file"},
+           %{"name" => "test_helper.exs", "type" => "file"}
+         ],
+         "name" => "test",
+         "type" => "directory"
+       },
+       %{"name" => "treetest.json", "type" => "file"},
+       %{"name" => "treetestbig.json", "type" => "file"},
+       %{"name" => "treetestbiglarge.json", "type" => "file"},
+       %{"name" => "treetestlarge.json", "type" => "file"}
+     ],
+     "name" => ".",
+     "type" => "directory"
+   },
+   %{"directories" => 5, "files" => 11, "type" => "report"}
+ ]}
+
+
+iex(14)> {:ok, content} = content
+{:ok,
+ [
+   %{
+     "contents" => [
+       %{"name" => "README.md", "type" => "file"},
+       %{
+         "contents" => [%{"name" => "config.exs", "type" => "file"}],
+         "name" => "config",
+         "type" => "directory"
+       },
+       %{"name" => "elxrtree", "type" => "file"},
+       %{"contents" => [], "name" => "empty", "type" => "directory"},
+       %{
+         "contents" => [
+           %{
+             "contents" => [%{"name" => "cli.ex", "type" => "file"}],
+             "name" => "Elxrtree",
+             "type" => "directory"
+           }
+         ],
+         "name" => "lib",
+         "type" => "directory"
+       },
+       %{"name" => "mix.exs", "type" => "file"},
+       %{
+         "contents" => [
+           %{"name" => "elxrtree_test.exs", "type" => "file"},
+           %{"name" => "test_helper.exs", "type" => "file"}
+         ],
+         "name" => "test",
+         "type" => "directory"
+       },
+       %{"name" => "treetest.json", "type" => "file"},
+       %{"name" => "treetestbig.json", "type" => "file"},
+       %{"name" => "treetestbiglarge.json", "type" => "file"},
+       %{"name" => "treetestlarge.json", "type" => "file"}
+     ],
+     "name" => ".",
+     "type" => "directory"
+   },
+   %{"directories" => 5, "files" => 11, "type" => "report"}
+ ]}
+
+
+iex(16)> [ tree | summary ] = content
+[
+  %{
+    "contents" => [
+      %{"name" => "README.md", "type" => "file"},
+      %{
+        "contents" => [%{"name" => "config.exs", "type" => "file"}],
+        "name" => "config",
+        "type" => "directory"
+      },
+      %{"name" => "elxrtree", "type" => "file"},
+      %{"contents" => [], "name" => "empty", "type" => "directory"},
+      %{
+        "contents" => [
+          %{
+            "contents" => [%{"name" => "cli.ex", "type" => "file"}],
+            "name" => "Elxrtree",
+            "type" => "directory"
+          }
+        ],
+        "name" => "lib",
+        "type" => "directory"
+      },
+      %{"name" => "mix.exs", "type" => "file"},
+      %{
+        "contents" => [
+          %{"name" => "elxrtree_test.exs", "type" => "file"},
+          %{"name" => "test_helper.exs", "type" => "file"}
+        ],
+        "name" => "test",
+        "type" => "directory"
+      },
+      %{"name" => "treetest.json", "type" => "file"},
+      %{"name" => "treetestbig.json", "type" => "file"},
+      %{"name" => "treetestbiglarge.json", "type" => "file"},
+      %{"name" => "treetestlarge.json", "type" => "file"}
+    ],
+    "name" => ".",
+    "type" => "directory"
+  },
+
+
+
+iex(17)> tree
+%{
+  "contents" => [
+    %{"name" => "README.md", "type" => "file"},
+    %{
+      "contents" => [%{"name" => "config.exs", "type" => "file"}],
+      "name" => "config",
+      "type" => "directory"
+    },
+    %{"name" => "elxrtree", "type" => "file"},
+    %{"contents" => [], "name" => "empty", "type" => "directory"},
+    %{
+      "contents" => [
+        %{
+          "contents" => [%{"name" => "cli.ex", "type" => "file"}],
+          "name" => "Elxrtree",
+          "type" => "directory"
+        }
+      ],
+      "name" => "lib",
+      "type" => "directory"
+    },
+    %{"name" => "mix.exs", "type" => "file"},
+    %{
+      "contents" => [
+        %{"name" => "elxrtree_test.exs", "type" => "file"},
+        %{"name" => "test_helper.exs", "type" => "file"}
+      ],
+      "name" => "test",
+      "type" => "directory"
+    },
+    %{"name" => "treetest.json", "type" => "file"},
+    %{"name" => "treetestbig.json", "type" => "file"},
+    %{"name" => "treetestbiglarge.json", "type" => "file"},
+    %{"name" => "treetestlarge.json", "type" => "file"}
+  ],
+  "name" => ".",
+  "type" => "directory"
+}
+
+
+iex(18)> summary
+[%{"directories" => 5, "files" => 11, "type" => "report"}]
+
+
+iex(19)> [summary | _rest] = summary
+[%{"directories" => 5, "files" => 11, "type" => "report"}]
+
+
+iex(20)> summary
+%{"directories" => 5, "files" => 11, "type" => "report"}
+
+
+iex(21)> tree
+%{
+  "contents" => [
+    %{"name" => "README.md", "type" => "file"},
+    %{
+      "contents" => [%{"name" => "config.exs", "type" => "file"}],
+      "name" => "config",
+      "type" => "directory"
+    },
+    %{"name" => "elxrtree", "type" => "file"},
+    %{"contents" => [], "name" => "empty", "type" => "directory"},
+    %{
+      "contents" => [
+        %{
+          "contents" => [%{"name" => "cli.ex", "type" => "file"}],
+          "name" => "Elxrtree",
+          "type" => "directory"
+        }
+      ],
+      "name" => "lib",
+      "type" => "directory"
+    },
+    %{"name" => "mix.exs", "type" => "file"},
+    %{
+      "contents" => [
+        %{"name" => "elxrtree_test.exs", "type" => "file"},
+        %{"name" => "test_helper.exs", "type" => "file"}
+      ],
+      "name" => "test",
+      "type" => "directory"
+    },
+    %{"name" => "treetest.json", "type" => "file"},
+    %{"name" => "treetestbig.json", "type" => "file"},
+    %{"name" => "treetestbiglarge.json", "type" => "file"},
+    %{"name" => "treetestlarge.json", "type" => "file"}
+  ],
+  "name" => ".",
+  "type" => "directory"
+}
+
+
+iex(22)> tree["contents"]
+[
+  %{"name" => "README.md", "type" => "file"},
+  %{
+    "contents" => [%{"name" => "config.exs", "type" => "file"}],
+    "name" => "config",
+    "type" => "directory"
+  },
+  %{"name" => "elxrtree", "type" => "file"},
+  %{"contents" => [], "name" => "empty", "type" => "directory"},
+  %{
+    "contents" => [
+      %{
+        "contents" => [%{"name" => "cli.ex", "type" => "file"}],
+        "name" => "Elxrtree",
+        "type" => "directory"
+      }
+    ],
+    "name" => "lib",
+    "type" => "directory"
+  },
+  %{"name" => "mix.exs", "type" => "file"},
+  %{
+    "contents" => [
+      %{"name" => "elxrtree_test.exs", "type" => "file"},
+      %{"name" => "test_helper.exs", "type" => "file"}
+    ],
+    "name" => "test",
+    "type" => "directory"
+  },
+  %{"name" => "treetest.json", "type" => "file"},
+  %{"name" => "treetestbig.json", "type" => "file"},
+  %{"name" => "treetestbiglarge.json", "type" => "file"},
+  %{"name" => "treetestlarge.json", "type" => "file"}
+]
+
+
+
+iex(23)> tree["name"]
+"."
+
+
+iex(24)> tree["type"]
+"directory"
+
+
+iex(30)> summary
+%{"directories" => 5, "files" => 11, "type" => "report"}
+
+
+iex(31)> summary["files"]
+11
+
+
+iex(32)> summary["type"]
+"report"
+
+
+iex(33)> summary["directories"]
+5
+
+
+
+----
+
+
+
+{:ok, file} = File.open("./treetest.json")
+{:ok, filecontent} = File.read("./treetest.json")
+filecontent
+content = Poison.decode(filecontent)
+{:ok, content} = content
+[ tree | summary ] = content
+tree
+summary
+[summary | _rest] = summary
+summary
+tree
+tree["contents"]
+tree["name"]
+tree["type"]
+summary
+summary["files"]
+summary["type"]
+summary["directories"]
+
+mix escript.build
+./elxrtree -f treetest.json -g test 2>/dev/null
+
+mix format lib/Elxrtree/cli.ex
+
+#iex:break
+#iex break
+
+

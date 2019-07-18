@@ -1,0 +1,175 @@
+opts: [file: "treetest.json", group: "test"]
+opt: {:file, "treetest.json"} 
+opts: [group: "test"]
+filename: "treetest.json"
+filecontent: [
+  {"type":"directory","name":".","contents":[
+    {"type":"file","name":"README.md"},
+    {"type":"directory","name":"config","contents":[
+      {"type":"file","name":"config.exs"}
+    ]},
+    {"type":"file","name":"elxrtree"},
+    {"type":"directory","name":"empty","contents":[
+    ]},
+    {"type":"directory","name":"lib","contents":[
+      {"type":"directory","name":"Elxrtree","contents":[
+        {"type":"file","name":"cli.ex"}
+      ]}
+    ]},
+    {"type":"file","name":"mix.exs"},
+    {"type":"directory","name":"test","contents":[
+      {"type":"file","name":"elxrtree_test.exs"},
+      {"type":"file","name":"test_helper.exs"}
+    ]},
+    {"type":"file","name":"treetest.json"},
+    {"type":"file","name":"treetestbig.json"},
+    {"type":"file","name":"treetestbiglarge.json"},
+    {"type":"file","name":"treetestlarge.json"}
+  ]},
+  {"type":"report","directories":5,"files":11}
+]
+
+fajsonstructure:
+handle_struct
+handle_treestruct
+name
+"."
+type
+"directory"
+contents
+[
+  %{"name" => "README.md", "type" => "file"},
+  %{
+    "contents" => [%{"name" => "config.exs", "type" => "file"}],
+    "name" => "config",
+    "type" => "directory"
+  },
+  %{"name" => "elxrtree", "type" => "file"},
+  %{"contents" => [], "name" => "empty", "type" => "directory"},
+  %{
+    "contents" => [
+      %{
+        "contents" => [%{"name" => "cli.ex", "type" => "file"}],
+        "name" => "Elxrtree",
+        "type" => "directory"
+      }
+    ],
+    "name" => "lib",
+    "type" => "directory"
+  },
+  %{"name" => "mix.exs", "type" => "file"},
+  %{
+    "contents" => [
+      %{"name" => "elxrtree_test.exs", "type" => "file"},
+      %{"name" => "test_helper.exs", "type" => "file"}
+    ],
+    "name" => "test",
+    "type" => "directory"
+  },
+  %{"name" => "treetest.json", "type" => "file"},
+  %{"name" => "treetestbig.json", "type" => "file"},
+  %{"name" => "treetestbiglarge.json", "type" => "file"},
+  %{"name" => "treetestlarge.json", "type" => "file"}
+]
+handle_content
+count: 1
+level: 0
+content_type "file"
+content_first %{"name" => "README.md", "type" => "file"}
+content_rest [%{"contents" => [%{"name" => "config.exs", "type" => "file"}], "name" => "config", "type" => "directory"}, %{"name" => "elxrtree", "type" => "file"}, %{"contents" => [], "name" => "empty", "type" => "directory"}, %{"contents" => [%{"contents" => [%{"name" => "cli.ex", "type" => "file"}], "name" => "Elxrtree", "type" => "directory"}], "name" => "lib", "type" => "directory"}, %{"name" => "mix.exs", "type" => "file"}, %{"contents" => [%{"name" => "elxrtree_test.exs", "type" => "file"}, %{"name" => "test_helper.exs", "type" => "file"}], "name" => "test", "type" => "directory"}, %{"name" => "treetest.json", "type" => "file"}, %{"name" => "treetestbig.json", "type" => "file"}, %{"name" => "treetestbiglarge.json", "type" => "file"}, %{"name" => "treetestlarge.json", "type" => "file"}]
+case content type
+handle_file: %{"name" => "README.md", "type" => "file"}
+README.md
+handle_content
+count: 2
+level: 0
+content_type "directory"
+content_first %{"contents" => [%{"name" => "config.exs", "type" => "file"}], "name" => "config", "type" => "directory"}
+content_rest [%{"name" => "elxrtree", "type" => "file"}, %{"contents" => [], "name" => "empty", "type" => "directory"}, %{"contents" => [%{"contents" => [%{"name" => "cli.ex", "type" => "file"}], "name" => "Elxrtree", "type" => "directory"}], "name" => "lib", "type" => "directory"}, %{"name" => "mix.exs", "type" => "file"}, %{"contents" => [%{"name" => "elxrtree_test.exs", "type" => "file"}, %{"name" => "test_helper.exs", "type" => "file"}], "name" => "test", "type" => "directory"}, %{"name" => "treetest.json", "type" => "file"}, %{"name" => "treetestbig.json", "type" => "file"}, %{"name" => "treetestbiglarge.json", "type" => "file"}, %{"name" => "treetestlarge.json", "type" => "file"}]
+case content type
+handle_directory: %{"contents" => [%{"name" => "config.exs", "type" => "file"}], "name" => "config", "type" => "directory"}
+config
+handle_content
+count: 3
+level: 1
+content_type "file"
+content_first %{"name" => "elxrtree", "type" => "file"}
+content_rest [%{"contents" => [], "name" => "empty", "type" => "directory"}, %{"contents" => [%{"contents" => [%{"name" => "cli.ex", "type" => "file"}], "name" => "Elxrtree", "type" => "directory"}], "name" => "lib", "type" => "directory"}, %{"name" => "mix.exs", "type" => "file"}, %{"contents" => [%{"name" => "elxrtree_test.exs", "type" => "file"}, %{"name" => "test_helper.exs", "type" => "file"}], "name" => "test", "type" => "directory"}, %{"name" => "treetest.json", "type" => "file"}, %{"name" => "treetestbig.json", "type" => "file"}, %{"name" => "treetestbiglarge.json", "type" => "file"}, %{"name" => "treetestlarge.json", "type" => "file"}]
+case content type
+handle_file: %{"name" => "elxrtree", "type" => "file"}
+elxrtree
+handle_content
+count: 4
+level: 1
+content_type "directory"
+content_first %{"contents" => [], "name" => "empty", "type" => "directory"}
+content_rest [%{"contents" => [%{"contents" => [%{"name" => "cli.ex", "type" => "file"}], "name" => "Elxrtree", "type" => "directory"}], "name" => "lib", "type" => "directory"}, %{"name" => "mix.exs", "type" => "file"}, %{"contents" => [%{"name" => "elxrtree_test.exs", "type" => "file"}, %{"name" => "test_helper.exs", "type" => "file"}], "name" => "test", "type" => "directory"}, %{"name" => "treetest.json", "type" => "file"}, %{"name" => "treetestbig.json", "type" => "file"}, %{"name" => "treetestbiglarge.json", "type" => "file"}, %{"name" => "treetestlarge.json", "type" => "file"}]
+case content type
+handle_directory: %{"contents" => [], "name" => "empty", "type" => "directory"}
+empty
+handle_content
+count: 5
+level: 2
+content_type "directory"
+content_first %{"contents" => [%{"contents" => [%{"name" => "cli.ex", "type" => "file"}], "name" => "Elxrtree", "type" => "directory"}], "name" => "lib", "type" => "directory"}
+content_rest [%{"name" => "mix.exs", "type" => "file"}, %{"contents" => [%{"name" => "elxrtree_test.exs", "type" => "file"}, %{"name" => "test_helper.exs", "type" => "file"}], "name" => "test", "type" => "directory"}, %{"name" => "treetest.json", "type" => "file"}, %{"name" => "treetestbig.json", "type" => "file"}, %{"name" => "treetestbiglarge.json", "type" => "file"}, %{"name" => "treetestlarge.json", "type" => "file"}]
+case content type
+handle_directory: %{"contents" => [%{"contents" => [%{"name" => "cli.ex", "type" => "file"}], "name" => "Elxrtree", "type" => "directory"}], "name" => "lib", "type" => "directory"}
+lib
+handle_content
+count: 6
+level: 3
+content_type "file"
+content_first %{"name" => "mix.exs", "type" => "file"}
+content_rest [%{"contents" => [%{"name" => "elxrtree_test.exs", "type" => "file"}, %{"name" => "test_helper.exs", "type" => "file"}], "name" => "test", "type" => "directory"}, %{"name" => "treetest.json", "type" => "file"}, %{"name" => "treetestbig.json", "type" => "file"}, %{"name" => "treetestbiglarge.json", "type" => "file"}, %{"name" => "treetestlarge.json", "type" => "file"}]
+case content type
+handle_file: %{"name" => "mix.exs", "type" => "file"}
+mix.exs
+handle_content
+count: 7
+level: 3
+content_type "directory"
+content_first %{"contents" => [%{"name" => "elxrtree_test.exs", "type" => "file"}, %{"name" => "test_helper.exs", "type" => "file"}], "name" => "test", "type" => "directory"}
+content_rest [%{"name" => "treetest.json", "type" => "file"}, %{"name" => "treetestbig.json", "type" => "file"}, %{"name" => "treetestbiglarge.json", "type" => "file"}, %{"name" => "treetestlarge.json", "type" => "file"}]
+case content type
+handle_directory: %{"contents" => [%{"name" => "elxrtree_test.exs", "type" => "file"}, %{"name" => "test_helper.exs", "type" => "file"}], "name" => "test", "type" => "directory"}
+test
+handle_content
+count: 8
+level: 4
+content_type "file"
+content_first %{"name" => "treetest.json", "type" => "file"}
+content_rest [%{"name" => "treetestbig.json", "type" => "file"}, %{"name" => "treetestbiglarge.json", "type" => "file"}, %{"name" => "treetestlarge.json", "type" => "file"}]
+case content type
+handle_file: %{"name" => "treetest.json", "type" => "file"}
+treetest.json
+handle_content
+count: 9
+level: 4
+content_type "file"
+content_first %{"name" => "treetestbig.json", "type" => "file"}
+content_rest [%{"name" => "treetestbiglarge.json", "type" => "file"}, %{"name" => "treetestlarge.json", "type" => "file"}]
+case content type
+handle_file: %{"name" => "treetestbig.json", "type" => "file"}
+treetestbig.json
+handle_content
+count: 10
+level: 4
+content_type "file"
+content_first %{"name" => "treetestbiglarge.json", "type" => "file"}
+content_rest [%{"name" => "treetestlarge.json", "type" => "file"}]
+case content type
+handle_file: %{"name" => "treetestbiglarge.json", "type" => "file"}
+treetestbiglarge.json
+handle_content
+count: 11
+level: 4
+content_type "file"
+content_first %{"name" => "treetestlarge.json", "type" => "file"}
+content_rest []
+case content type
+handle_file: %{"name" => "treetestlarge.json", "type" => "file"}
+treetestlarge.json
+handle_content
+count: 12
+level: 4
