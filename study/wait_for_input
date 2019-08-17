@@ -1,0 +1,5 @@
+while read data
+do
+  echo $data >> file_output.txt
+done
+
