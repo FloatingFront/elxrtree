@@ -1,0 +1,12 @@
+#!/bin/bash
+"$@" &
+pid=$!
+
+while read data
+do
+  echo $data >> file_output.txt
+done
+
+kill -KILL $pid
+
+
