@@ -127,11 +127,12 @@ defmodule Elxrtree.CLI do
   end
 
   def handle_content(nil, [], count) do
-    log_where(__ENV__)
+#    log_where(__ENV__)
     IO.puts(":handle_content  : nil")
   end
 
   def parse_args(args) do
+#    log_where(__ENV__)
     options =     
       OptionParser.parse(
         args,
@@ -140,12 +141,19 @@ defmodule Elxrtree.CLI do
       )
   end
 
+  def parse_args([]) do
+#    log_where(__ENV__)
+    process_args(:help)
+  end
+
   def handle_args(options) do
+#    log_where(__ENV__)
     {parsed, remaining, errors} = options
     case parsed do
      [help: true]     -> :help
      [file: filename] -> {:file, filename}
-     [_,_]            -> {}  # valid arguments options should never reach here
+     []               -> :help
+     [_,_]            -> :help  # valid arguments options should never reach here
     end 
   end
 
@@ -154,6 +162,7 @@ defmodule Elxrtree.CLI do
      elxrtree
      --------
      Utility for generating html from directory content structure in json format.
+     ( i.e. the output from running: tree -J )
      usage: elxrtree -h   
      usage: elxrtree -f json-file
      example: elxrtree -f some-directory-structure.json
